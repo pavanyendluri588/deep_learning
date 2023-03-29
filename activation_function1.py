@@ -90,7 +90,7 @@ tf.keras.layers.Dense(100,activation = "relu"),
 )
 model12.summary()
 model12.compile(
-    optimizer="adam",
+    optimizer="sgd",
     loss="sparse_categorical_crossentropy",
     metrics=["accuracy"]
 )
