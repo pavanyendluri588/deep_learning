@@ -60,8 +60,8 @@ model1 = Sequential(
 model1.summary()
 
 #loading the data from keras 
-(x_train,x_test),(y_train,y_test) = keras.datasets.mnist.load_data()
-print(x_train.shape,x_test.shape,y_test.shape,y_train.shape)
+(x_train, y_train), (x_test, y_test)  = keras.datasets.mnist.load_data()
+print(x_train.shape,y_train.shape,x_test.shape,y_test.shape)
 
 
 #t0 view the images now we are using 
@@ -72,7 +72,7 @@ plt.show()
 
 x_train_flatten_changed= x_train.reshape(len(x_train),28*28)
 
-y_train_flatten_changed= y_train.reshape(len(y_train),28*28)
+x_test_flatten_changed= x_test.reshape(len(x_test),28*28)
 
 
 model12 = Sequential(
@@ -95,9 +95,9 @@ model12.compile(
     metrics=["accuracy"]
 )
 import numpy as np
-model12.fit(x_train_flatten_changed,x_test,epochs=40)
+model12.fit(x_train_flatten_changed,y_train,epochs=40)
 print("weights:\n",model12.get_weights())
-y_predict=model12.predict(y_train_flatten_changed)
+y_predict=model12.predict(x_test_flatten_changed)
 y_predict = [np.argmax(i) for i in y_predict]
 conf_matrix=tf.math.confusion_matrix(labels=y_test,predictions=y_predict)
 print(tf.math.confusion_matrix(labels=y_test,predictions=y_predict))
